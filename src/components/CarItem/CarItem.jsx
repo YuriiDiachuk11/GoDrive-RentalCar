@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./CarItem.module.css";
 
 const CarItem = ({ car }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const toggleLike = () => {
+    setIsLiked((prev) => !prev);
+  };
+
   const goodAddress = car.address.split(", ");
   const city = goodAddress[goodAddress.length - 2];
   const country = goodAddress[goodAddress.length - 1];
 
   return (
     <div className={s.container}>
-      <img className={s.icon} src={car.img} alt={car.model} />
+      <div className={s.imageBox}>
+        <img
+          onClick={toggleLike}
+          className={`${s.icon} ${isLiked ? s.likedImage : ""}`}
+          src={car.img}
+          alt={car.model}
+        />
+        <svg
+          onClick={toggleLike}
+          className={`${s.svg} ${isLiked ? s.liked : ""}`}
+          width="16"
+          height="16"
+        >
+          <use href="src/assets/sprite.svg#icon-heart"></use>
+        </svg>
+      </div>
       <div className={s.carBox}>
         <h3 className={s.title}>
           {car.brand}
