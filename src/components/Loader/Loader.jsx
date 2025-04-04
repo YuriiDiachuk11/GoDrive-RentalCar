@@ -1,7 +1,11 @@
 import React from "react";
+import { HashLoader } from "react-spinners";
 
 const Loader = () => {
-  return <div></div>;
+  return (
+    <div>
+      <HashLoader />
+    </div>
+  );
 };
-
 export default Loader;
