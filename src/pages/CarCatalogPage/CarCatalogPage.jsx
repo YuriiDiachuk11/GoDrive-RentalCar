@@ -4,6 +4,7 @@ import CarFiltersMenu from "../../components/CarFiltersMenu/CarFiltersMenu.jsx";
 import CarList from "../../components/CarList/CarList.jsx";
 import { getCars } from "../../services/api.js";
 import Loader from "../../components/Loader/Loader.jsx";
+import s from "./CarCatalogPage.module.css";
 
 const CarCatalogPage = () => {
   const [cars, setCars] = useState([]);
@@ -29,6 +30,11 @@ const CarCatalogPage = () => {
       <CarFiltersMenu />
       {isLoading && <Loader />}
       <CarList cars={cars} />
+      <div className={s.btnContainer}>
+        <button className={s.button} type="button">
+          Load More
+        </button>
+      </div>
     </div>
   );
 };

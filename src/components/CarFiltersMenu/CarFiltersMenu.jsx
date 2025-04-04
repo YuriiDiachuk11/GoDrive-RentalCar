@@ -30,12 +30,12 @@ const CarFiltersMenu = () => {
           Car mileage / km
         </label>
         <div className={s.FromToBox}>
-          <select className={s.select} name="" id="">
+          <select className={s.selectFrom} name="" id="">
             <option className={s.option} value="">
               From
             </option>
           </select>
-          <select className={s.select} name="" id="">
+          <select className={s.selectTo} name="" id="">
             <option className={s.option} value="">
               To
             </option>
@@ -45,7 +45,6 @@ const CarFiltersMenu = () => {
       <button className={s.button} type="submit">
         Search
       </button>
-      ;
     </form>
   );
 };
