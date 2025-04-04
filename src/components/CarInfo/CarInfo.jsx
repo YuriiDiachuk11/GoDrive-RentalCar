@@ -1,27 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getCarById } from "../../services/api.js";
+import React from "react";
+
 import s from "./CarInfo.module.css";
-import Loader from "../Loader/Loader.jsx";
 
-const CarInfo = () => {
-  const { id } = useParams();
-  const [car, setCar] = useState(null);
-
-  useEffect(() => {
-    const getCar = async () => {
-      try {
-        const carData = await getCarById(id);
-        setCar(carData);
-      } catch (error) {
-        console.error("Sorry we can't find the car", error);
-      }
-    };
-    getCar();
-  }, [id]);
-
-  if (!car) return <Loader />;
-
+const CarInfo = ({ car }) => {
   const goodAddress = car.address.split(", ");
   const city = goodAddress[goodAddress.length - 2];
   const country = goodAddress[goodAddress.length - 1];
