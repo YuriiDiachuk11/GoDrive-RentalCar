@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import s from "./CarItem.module.css";
+import { useNavigate } from "react-router-dom";
 
 const CarItem = ({ car }) => {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate(`/catalog/${car.id}`);
+  };
   const [isLiked, setIsLiked] = useState(false);
   const toggleLike = () => {
     setIsLiked((prev) => !prev);
@@ -51,7 +56,7 @@ const CarItem = ({ car }) => {
           <p className={s.text}>{car.mileage}</p>
         </div>
       </div>
-      <button className={s.button} type="button">
+      <button onClick={handleButtonClick} className={s.button} type="button">
         Read more
       </button>
     </div>

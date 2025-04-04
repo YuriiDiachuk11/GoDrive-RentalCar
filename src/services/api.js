@@ -11,3 +11,13 @@ export const getCars = async () => {
     throw error;
   }
 };
+
+export const getCarById = async (id) => {
+  try {
+    const response = await axios.get(`/cars/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Oops, car not found", error);
+    throw error;
+  }
+};

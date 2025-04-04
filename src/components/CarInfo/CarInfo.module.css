@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  gap: 72px;
+  padding-left: 120px;
+  padding-top: 84px;
+}
+.image {
+  border-radius: 19px;
+  width: 640px;
+  height: 512px;
+}
+.infoBox {
+  width: 100%;
+  height: auto;
+}
+.title {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  /* text-align: center; */
+  color: var(--main);
+}
+.mileageAndAddressBox {
+  display: flex;
+  gap: 16px;
+}
+.address,
+.mileage {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+}
+.price {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--button);
+  margin-top: 16px;
+}
+.description {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  width: 100%;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
