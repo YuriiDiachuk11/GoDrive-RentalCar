@@ -19,6 +19,14 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  border: none;
+}
+.label {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
 }
 
 .svg {
@@ -28,4 +36,9 @@
   transform: translateY(-50%) rotate(180deg);
   cursor: pointer;
   pointer-events: all;
+}
+.carBrandBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

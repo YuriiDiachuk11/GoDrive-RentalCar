@@ -3,6 +3,7 @@ import s from "./CarFiltersMenu.module.css";
 import { getBrands } from "../../services/api.js";
 import ChooseBrand from "../ChooseBrand/ChooseBrand.jsx";
 import ChooseRentalPrice from "../ChooseRentalPrice/ChooseRentalPrice.jsx";
+import MileageFilter from "../MileageFilter/MileageFilter.jsx";
 
 const CarFiltersMenu = () => {
   const [brands, setBrands] = useState([]);
@@ -32,23 +33,7 @@ const CarFiltersMenu = () => {
         </label>
         <ChooseRentalPrice />
       </div>
-      <div className={s.mileageBox}>
-        <label className={s.label} htmlFor="">
-          Car mileage / km
-        </label>
-        <div className={s.FromToBox}>
-          <select className={s.selectFrom} name="" id="">
-            <option className={s.option} value="">
-              From
-            </option>
-          </select>
-          <select className={s.selectTo} name="" id="">
-            <option className={s.option} value="">
-              To
-            </option>
-          </select>
-        </div>
-      </div>
+      <MileageFilter />
       <button className={s.button} type="submit">
         Search
       </button>

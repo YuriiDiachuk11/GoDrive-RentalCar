@@ -19,6 +19,7 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  border: none;
 }
 
 .svg {

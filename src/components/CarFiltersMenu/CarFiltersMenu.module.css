@@ -17,11 +17,7 @@
   flex-direction: column;
   gap: 8px;
 }
-.mileageBox {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+
 .label {
   font-family: var(--font-family);
   font-weight: 400;
@@ -30,62 +26,8 @@
   color: var(--gray);
 }
 
-.select {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--main);
-  border-radius: 12px;
-  padding: 12px 16px;
-  width: 196px;
-  height: 44px;
-  text-align: left;
-  margin: 0;
-  background: var(--inputs);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  position: relative;
-}
-
-.selectFrom {
-  border-right: 1px solid var(--gray-light);
-  border-radius: 12px 0 0 12px;
-  width: 160px;
-  height: 44px;
-  background: var(--inputs);
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--main);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-align: left;
-  padding-left: 24px;
-}
-.selectTo {
-  border-radius: 0 12px 12px 0;
-  width: 160px;
-  height: 44px;
-  background: var(--inputs);
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--main);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  padding-left: 24px;
-  text-align: left;
-}
-
 .button {
   margin-top: 24px;
-  /* padding: 24px; */
   border-radius: 12px;
   width: 156px;
   height: 44px;
@@ -95,7 +37,4 @@
   font-size: 16px;
   line-height: 125%;
   color: var(--white);
-}
-.icon {
-  fill: var(--main);
 }
