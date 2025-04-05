@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./CarFiltersMenu.module.css";
-import sprite from "../../assets/sprite.svg";
 
 const CarFiltersMenu = () => {
   return (

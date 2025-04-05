@@ -6,6 +6,8 @@ import CarSpecifications from "../../components/CarSpecifications/CarSpecificati
 import { getCarById } from "../../services/api.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import { useParams } from "react-router-dom";
+import RentForm from "../../components/RentForm/RentForm.jsx";
+import Accessories from "../../components/Accessories/Accessories.jsx";
 
 const CarFavouritePage = () => {
   const { id } = useParams();
@@ -30,6 +32,8 @@ const CarFavouritePage = () => {
       <CarInfo car={car} />
       <RentInfo />
       <CarSpecifications car={car} />
+      <Accessories car={car} />
+      <RentForm />
     </div>
   );
 };

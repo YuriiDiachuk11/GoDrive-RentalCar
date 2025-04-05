@@ -31,7 +31,7 @@ const CarItem = ({ car }) => {
           width="16"
           height="16"
         >
-          <use href="src/assets/sprite.svg#icon-heart"></use>
+          <use href="/assets/sprite.svg#icon-heart"></use>
         </svg>
       </div>
       <div className={s.carBox}>
