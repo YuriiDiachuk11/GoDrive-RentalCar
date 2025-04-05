@@ -21,3 +21,14 @@ export const getCarById = async (id) => {
     throw error;
   }
 };
+
+export const getBrands = async () => {
+  try {
+    const response = await axios.get("/brands");
+    console.log("Fetched brands:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Brands are absent", error);
+    throw error;
+  }
+};

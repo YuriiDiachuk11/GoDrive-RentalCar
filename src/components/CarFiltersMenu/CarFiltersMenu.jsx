@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import s from "./CarFiltersMenu.module.css";
+import { getBrands } from "../../services/api.js";
+import ChooseBrand from "../ChooseBrand/ChooseBrand.jsx";
 
 const CarFiltersMenu = () => {
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        const fetchedBrands = await getBrands();
+        setBrands(fetchedBrands);
+      } catch (error) {
+        console.error("Brands are absent today", error);
+      }
+    };
+    fetchBrands();
+  }, []);
+
   return (
     <form className={s.form}>
       <div className={s.carBrandBox}>
         <label className={s.label} htmlFor="">
           Car brand
         </label>
-        <select className={s.select} name="Choose a brand" id="">
-          <option className={s.option} value="">
-            Choose a brand
-          </option>
-        </select>
+        <ChooseBrand brands={brands} />
       </div>
       <div className={s.carPriceBox}>
         <label className={s.label} htmlFor="">
