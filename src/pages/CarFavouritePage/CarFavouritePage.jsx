@@ -8,6 +8,8 @@ import Loader from "../../components/Loader/Loader.jsx";
 import { useParams } from "react-router-dom";
 import RentForm from "../../components/RentForm/RentForm.jsx";
 import Accessories from "../../components/Accessories/Accessories.jsx";
+import s from "./CarFavouritePage.module.css";
+import FavouriteCar from "../../components/FavouriteCar/FavouriteCar.jsx";
 
 const CarFavouritePage = () => {
   const { id } = useParams();
@@ -29,11 +31,32 @@ const CarFavouritePage = () => {
   return (
     <div>
       <Navigation />
-      <CarInfo car={car} />
-      <RentInfo />
-      <CarSpecifications car={car} />
-      <Accessories car={car} />
-      <RentForm />
+      <div className={s.container}>
+        <div className={s.leftBox}>
+          <div>
+            <FavouriteCar car={car} />
+          </div>
+          <div className={s.RentFormBox}>
+            <RentForm />
+          </div>
+        </div>
+        <div className={s.rightBox}>
+          <div className={s.carInfoBox}>
+            <CarInfo car={car} />
+          </div>
+          <div className={s.additionalBox}>
+            <div className={s.rentInfoBox}>
+              <RentInfo />
+            </div>
+            <div className={s.CarSpecificationsBox}>
+              <CarSpecifications car={car} />
+            </div>
+            <div className={s.AccessoriesBox}>
+              <Accessories car={car} />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

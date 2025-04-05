@@ -8,8 +8,7 @@ const CarInfo = ({ car }) => {
   const country = goodAddress[goodAddress.length - 1];
 
   return (
-    <div className={s.container}>
-      <img className={s.image} src={car.img} alt={car.model} />
+    <div>
       <div className={s.box}>
         <div className={s.infoBox}>
           <h1 className={s.title}>
