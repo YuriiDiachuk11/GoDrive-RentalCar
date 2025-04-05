@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from "./CarFiltersMenu.module.css";
 import { getBrands } from "../../services/api.js";
 import ChooseBrand from "../ChooseBrand/ChooseBrand.jsx";
+import ChooseRentalPrice from "../ChooseRentalPrice/ChooseRentalPrice.jsx";
 
 const CarFiltersMenu = () => {
   const [brands, setBrands] = useState([]);
@@ -17,7 +18,6 @@ const CarFiltersMenu = () => {
     };
     fetchBrands();
   }, []);
-
   return (
     <form className={s.form}>
       <div className={s.carBrandBox}>
@@ -30,11 +30,7 @@ const CarFiltersMenu = () => {
         <label className={s.label} htmlFor="">
           Price/ 1 hour
         </label>
-        <select className={s.select} name="" id="">
-          <option className={s.option} value="">
-            Choose a price
-          </option>
-        </select>
+        <ChooseRentalPrice />
       </div>
       <div className={s.mileageBox}>
         <label className={s.label} htmlFor="">
