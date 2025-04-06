@@ -5,24 +5,23 @@ import CarList from "../../components/CarList/CarList.jsx";
 import { getCars } from "../../services/api.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import s from "./CarCatalogPage.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCars,
+  selectError,
+  selectIsLoading,
+} from "../../redux/selectors/selectors.js";
+import { fetchCars } from "../../redux/carSlice.js";
 
 const CarCatalogPage = () => {
-  const [cars, setCars] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const cars = useSelector(selectCars);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        setIsLoading(true);
-        const data = await getCars();
-        setIsLoading(false);
-        setCars(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getData();
-  }, []);
+    dispatch(fetchCars());
+  }, [dispatch]);
 
   return (
     <div>
@@ -30,6 +29,7 @@ const CarCatalogPage = () => {
       <CarFiltersMenu />
       {isLoading && <Loader />}
       <CarList cars={cars} />
+      {error && <p>Error: {error}</p>}
       <div className={s.btnContainer}>
         <button className={s.button} type="button">
           Load More
