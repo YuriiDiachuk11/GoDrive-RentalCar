@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCars } from "../services/api.js";
+import { getCars, getMoreCars } from "../services/api.js";
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchCars",
@@ -36,6 +36,17 @@ const carsSlice = createSlice({
         state.cars = action.payload;
       })
       .addCase(fetchCars.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(getMoreCars.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getMoreCars.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.cars = [...state.cars, ...action.payload.data];
+      })
+      .addCase(getMoreCars.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
