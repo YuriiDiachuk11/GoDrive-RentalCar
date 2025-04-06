@@ -68,3 +68,30 @@
   line-height: 125%;
   color: var(--gray);
 }
+.datePickerWrapper {
+  width: 100% !important;
+}
+
+.dateInput {
+  width: 100% !important; /* Займає всю ширину батьківського елемента */
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: var(--inputs);
+  border: none;
+  height: 48px; /* Встановлюємо висоту, щоб вона відповідала іншим полям */
+  font-size: 16px;
+  color: var(--gray);
+}
+
+.dateInput:focus {
+  outline: none;
+  border: 1px solid var(--main); /* Колір обводки при фокусі */
+}
+
+.dateInput::placeholder {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--gray);
+}
