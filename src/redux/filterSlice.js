@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getFilteredCars } from "../services/api"; // Функція для отримання відфільтрованих машин
+import { getFilteredCars } from "../services/api";
 
 export const fetchFilteredCars = createAsyncThunk(
   "filters/fetchFilteredCars",

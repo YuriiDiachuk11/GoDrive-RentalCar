@@ -30,7 +30,7 @@
   transform: scale(1.1);
 }
 
-.svg.liked path {
+.liked {
   fill: #3470ff;
 }
 
@@ -95,8 +95,4 @@
   justify-content: center;
   cursor: pointer;
   margin-top: auto;
-}
-
-.likedImage {
-  opacity: 0.8;
 }
