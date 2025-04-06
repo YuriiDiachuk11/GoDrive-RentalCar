@@ -32,3 +32,23 @@ export const getBrands = async () => {
     throw error;
   }
 };
+
+export const getFilteredCars = async (filters) => {
+  try {
+    const { brand, rentalPrice, minMileage, maxMileage } = filters;
+
+    const params = {};
+
+    if (brand) params.brand = brand;
+    if (rentalPrice) params.rentalPrice = rentalPrice;
+    if (minMileage) params.minMileage = minMileage;
+    if (maxMileage) params.maxMileage = maxMileage;
+
+    const response = await axios.get("/cars", { params });
+
+    return response.data.cars;
+  } catch (error) {
+    console.error("Cars are busy now, try again later", error);
+    throw error;
+  }
+};

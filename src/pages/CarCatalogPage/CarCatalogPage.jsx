@@ -11,7 +11,7 @@ import {
   selectError,
   selectIsLoading,
 } from "../../redux/selectors/selectors.js";
-import { fetchCars } from "../../redux/carSlice.js";
+import { fetchCars } from "../../redux/carsSlice.js";
 
 const CarCatalogPage = () => {
   const dispatch = useDispatch();
