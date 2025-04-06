@@ -11,7 +11,7 @@ const Navigation = () => {
   return (
     <nav className={s.navigation}>
       <NavLink to="/">
-        <img src="/public/Optimize-logo.svg" alt="RentalCar Logo" />
+        <img src="/Optimize-logo.svg" alt="RentalCar Logo" />
       </NavLink>
       <div className={s.menu}>
         <NavLink className={buildLinkClass} to="/">
