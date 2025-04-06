@@ -3,7 +3,7 @@
   width: 196px;
 }
 
-.selectRentalPrice {
+.selectBox {
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
@@ -13,20 +13,85 @@
   padding: 12px 16px;
   width: 196px;
   height: 44px;
-  text-align: left;
-  margin: 0;
   background: var(--inputs);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  /* border: none; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.selectedText {
+  flex-grow: 1;
+  color: var(--main);
 }
 
 .svg {
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.rotate {
+  transform: rotate(0deg);
+}
+
+.svg:not(.rotate) {
+  transform: rotate(180deg);
+}
+
+.dropdown {
   position: absolute;
-  top: 50%;
-  right: 16px;
-  transform: translateY(-50%) rotate(180deg);
-  cursor: pointer;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--inputs);
+  border: 1px solid var(--inputs);
+  border-radius: 12px;
+  margin-top: 4px;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  height: 188px;
+  padding: 14px 18px;
+  overflow-y: auto;
+}
+
+.dropdown::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--gray-light);
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdownVisible {
+  opacity: 1;
+  transform: translateY(0);
   pointer-events: all;
+}
+
+.option {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--gray);
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  margin-bottom: 8px;
+}
+
+.option:last-child {
+  margin-bottom: 0;
 }
