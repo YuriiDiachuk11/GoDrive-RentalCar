@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import CarFiltersMenu from "../../components/CarFiltersMenu/CarFiltersMenu.jsx";
 import CarList from "../../components/CarList/CarList.jsx";
-import { getCars } from "../../services/api.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import s from "./CarCatalogPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,8 +26,7 @@ const CarCatalogPage = () => {
     <div>
       <Navigation />
       <CarFiltersMenu />
-      {isLoading && <Loader />}
-      <CarList cars={cars} />
+      {isLoading ? <Loader /> : <CarList cars={cars} />}
       {error && <p>Error: {error}</p>}
       <div className={s.btnContainer}>
         <button className={s.button} type="button">

@@ -8,7 +8,7 @@ export const getCars = async () => {
     return response.data.cars;
   } catch (error) {
     console.error("Oops cars not found", error);
-    throw error;
+    return [];
   }
 };
 
@@ -25,7 +25,6 @@ export const getCarById = async (id) => {
 export const getBrands = async () => {
   try {
     const response = await axios.get("/brands");
-    console.log("Fetched brands:", response.data);
     return response.data;
   } catch (error) {
     console.error("Brands are absent", error);

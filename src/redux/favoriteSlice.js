@@ -14,17 +14,28 @@ const favoriteSlice = createSlice({
       );
       if (!existingCar) {
         state.favoriteCars.push(action.payload);
-        localStorage.setItem(
-          "favoriteCars",
-          JSON.stringify(state.favoriteCars)
-        );
+        try {
+          localStorage.setItem(
+            "favoriteCars",
+            JSON.stringify(state.favoriteCars)
+          );
+        } catch (error) {
+          console.error("Something went wrong bro, just sorry", error);
+        }
       }
     },
     deleteFavoriteCar: (state, action) => {
       state.favoriteCars = state.favoriteCars.filter(
         (car) => car.id !== action.payload
       );
-      localStorage.setItem("favoriteCars", JSON.stringify(state.favoriteCars));
+      try {
+        localStorage.setItem(
+          "favoriteCars",
+          JSON.stringify(state.favoriteCars)
+        );
+      } catch (error) {
+        console.error("Please try another time, local is busy", error);
+      }
     },
   },
 });

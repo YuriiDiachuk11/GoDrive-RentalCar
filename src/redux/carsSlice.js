@@ -21,7 +21,7 @@ const carsSlice = createSlice({
     error: null,
   },
   reducers: {
-    loadCars: (state, action) => {
+    setCars: (state, action) => {
       state.cars = action.payload;
     },
   },

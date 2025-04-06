@@ -11,13 +11,15 @@ const CarList = () => {
   const cars = useSelector((state) => {
     const filteredCars = selectFilteredCars(state);
 
-    return filteredCars.length > 0 ? filteredCars : selectCars(state);
+    return Array.isArray(filteredCars) && filteredCars.length > 0
+      ? filteredCars
+      : selectCars(state);
   });
 
   return (
     <div>
       <ul className={s.list}>
-        {cars.length > 0 ? (
+        {Array.isArray(cars) && cars.length > 0 ? (
           cars.map((car) => <CarItem key={car.id} car={car} />)
         ) : (
           <p>No cars found</p>

@@ -20,7 +20,6 @@ const filtersSlice = createSlice({
     rentalPrice: "",
     minMileage: "",
     maxMileage: "",
-    cars: [],
     isLoading: false,
     error: null,
   },
