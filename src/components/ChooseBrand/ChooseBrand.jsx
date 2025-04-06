@@ -1,10 +1,21 @@
 import React from "react";
 import s from "./ChooseBrand.module.css";
+import { useDispatch } from "react-redux";
+import { setBrand } from "../../redux/filterSlice.js";
 
 const ChooseBrand = ({ brands }) => {
+  const dispatch = useDispatch();
+  const handleChangeBrand = (e) => {
+    dispatch(setBrand(e.target.value));
+  };
   return (
     <div className={s.container}>
-      <select className={s.selectBrand} name="brand" id="brand">
+      <select
+        onChange={handleChangeBrand}
+        className={s.selectBrand}
+        name="brand"
+        id="brand"
+      >
         <option value="">Choose a brand</option>
         {brands.map((brand) => {
           return (
