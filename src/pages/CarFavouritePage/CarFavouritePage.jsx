@@ -46,7 +46,7 @@ const CarFavouritePage = () => {
           </div>
           <div className={s.additionalBox}>
             <div className={s.rentInfoBox}>
-              <RentInfo />
+              <RentInfo car={car} />
             </div>
             <div className={s.CarSpecificationsBox}>
               <CarSpecifications car={car} />
