@@ -13,6 +13,7 @@
   color: var(--main);
   white-space: nowrap;
   text-align: center;
+  cursor: pointer;
 }
 .btnContainer {
   display: flex;
