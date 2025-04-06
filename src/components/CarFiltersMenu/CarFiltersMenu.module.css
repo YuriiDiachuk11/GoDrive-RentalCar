@@ -38,3 +38,6 @@
   line-height: 125%;
   color: var(--white);
 }
+.button:hover {
+  background: var(--button-hover);
+}

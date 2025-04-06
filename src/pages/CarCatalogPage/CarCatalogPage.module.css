@@ -22,3 +22,6 @@
 .car-List {
   transition: opacity 0.3s ease-in-out;
 }
+.button:hover {
+  border: 1px solid var(--button-hover);
+}

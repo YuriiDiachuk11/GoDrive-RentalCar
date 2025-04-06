@@ -2,7 +2,6 @@ import React from "react";
 import s from "./RentInfo.module.css";
 
 const RentInfo = ({ car }) => {
-  // Масив умов оренди, які передаються через car.rentalConditions
   const rentalConditions = car.rentalConditions;
 
   return (

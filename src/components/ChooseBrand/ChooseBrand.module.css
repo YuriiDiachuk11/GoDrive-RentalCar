@@ -19,7 +19,7 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  border: none;
+  /* border: none; */
 }
 .label {
   font-family: var(--font-family);

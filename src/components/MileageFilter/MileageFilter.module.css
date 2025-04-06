@@ -22,7 +22,8 @@
   color: var(--main);
   text-align: left;
   padding-left: 24px;
-  border: none;
+  /* border: none; */
+  background: var(--inputs);
 }
 .inputTo {
   border-radius: 0 12px 12px 0;
@@ -35,7 +36,8 @@
   color: var(--main);
   padding-left: 24px;
   text-align: left;
-  border: none;
+  /* border: none; */
+  background: var(--inputs);
 }
 .inputFrom::placeholder {
   font-family: var(--font-family);
