@@ -11,6 +11,8 @@ const ChooseRentalPrice = () => {
   const [selected, setSelected] = useState(null);
   const dropdownRef = useRef(null);
 
+  const wasOpenRef = useRef(false);
+
   const handleSelect = (price) => {
     setSelected(price);
     dispatch(setRentalPrice(price));
@@ -27,6 +29,15 @@ const ChooseRentalPrice = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    if (isOpen && wasOpenRef.current === false && selected !== null) {
+      setSelected(null);
+      dispatch(setRentalPrice(""));
+    }
+
+    wasOpenRef.current = isOpen;
+  }, [isOpen]);
 
   const formatSelectedPrice = (price) => {
     if (price) {

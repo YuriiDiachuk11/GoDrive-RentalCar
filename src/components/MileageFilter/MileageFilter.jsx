@@ -26,6 +26,20 @@ const MileageFilter = () => {
     }
   };
 
+  const handleFocusMin = () => {
+    if (minMileage !== "From ") {
+      setMinMileageState("From ");
+      dispatch(setMinMileage(""));
+    }
+  };
+
+  const handleFocusMax = () => {
+    if (maxMileage !== "To ") {
+      setMaxMileageState("To ");
+      dispatch(setMaxMileage(""));
+    }
+  };
+
   return (
     <div>
       <div className={s.mileageBox}>
@@ -34,6 +48,7 @@ const MileageFilter = () => {
         </label>
         <div className={s.FromToBox}>
           <input
+            onFocus={handleFocusMin}
             onChange={handleChangeMin}
             className={s.inputFrom}
             type="text"
@@ -44,6 +59,7 @@ const MileageFilter = () => {
           />
 
           <input
+            onFocus={handleFocusMax}
             onChange={handleChangeMax}
             className={s.inputTo}
             type="text"

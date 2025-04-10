@@ -41,6 +41,7 @@ const filtersSlice = createSlice({
       state.rentalPrice = "";
       state.minMileage = "";
       state.maxMileage = "";
+      state.resetTrigger = true;
     },
   },
   extraReducers: (builder) => {

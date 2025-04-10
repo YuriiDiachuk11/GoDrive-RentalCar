@@ -9,6 +9,8 @@ const ChooseBrand = ({ brands }) => {
   const [selected, setSelected] = useState("");
   const dropdownRef = useRef(null);
 
+  const wasOpenRef = useRef(false);
+
   const handleSelect = (brand) => {
     setSelected(brand);
     dispatch(setBrand(brand));
@@ -25,6 +27,15 @@ const ChooseBrand = ({ brands }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    if (isOpen && !wasOpenRef.current && selected !== "") {
+      setSelected("");
+      dispatch(setBrand(""));
+    }
+
+    wasOpenRef.current = isOpen;
+  }, [isOpen]);
 
   return (
     <div className={s.container} ref={dropdownRef}>
