@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DatePicker from "react-datepicker"; //
 import "react-datepicker/dist/react-datepicker.css";
@@ -93,7 +93,6 @@ const RentForm = () => {
           </Form>
         )}
       </Formik>
-      <ToastContainer />
     </div>
   );
 };

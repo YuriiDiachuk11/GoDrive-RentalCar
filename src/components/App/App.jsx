@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "../Layout/Layout.jsx";
 import Loader from "../Loader/Loader.jsx";
+import { ToastContainer } from "react-toastify";
 
 const HomePage = React.lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const CarCatalogPage = React.lazy(() =>
@@ -14,6 +15,11 @@ const CarFavouritePage = React.lazy(() =>
 const App = () => {
   return (
     <div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+      />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route

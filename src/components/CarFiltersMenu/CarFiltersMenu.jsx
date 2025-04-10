@@ -10,9 +10,13 @@ import {
   selectMaxMileage,
   selectMinMileage,
   selectRentalPrice,
+  selectIsLoading,
+  selectError,
+  selectFilteredCars,
 } from "../../redux/selectors/selectors.js";
 import { fetchFilteredCars } from "../../redux/filterSlice.js";
 import { fetchCars } from "../../redux/carsSlice.js";
+import { toast } from "react-toastify";
 
 const CarFiltersMenu = () => {
   const [brands, setBrands] = useState([]);
@@ -22,6 +26,13 @@ const CarFiltersMenu = () => {
   const rentalPrice = useSelector(selectRentalPrice);
   const minMileage = useSelector(selectMinMileage);
   const maxMileage = useSelector(selectMaxMileage);
+  const filteredCars = useSelector(selectFilteredCars);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  const [isFirstSearch, setIsFirstSearch] = useState(true);
+  const [isSearchCompleted, setIsSearchCompleted] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const fetchBrands = async () => {
@@ -33,22 +44,51 @@ const CarFiltersMenu = () => {
       }
     };
     fetchBrands();
-
     dispatch(fetchCars());
   }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (
+      !brand &&
+      !rentalPrice &&
+      (minMileage === "" || minMileage === undefined) &&
+      (maxMileage === "" || maxMileage === undefined)
+    ) {
+      toast.error("Please select at least one filter.");
+      return;
+    }
+
     const filters = {
-      brand,
-      rentalPrice,
-      minMileage,
-      maxMileage,
+      ...(brand && { brand }),
+      ...(rentalPrice && { rentalPrice }),
+      ...(minMileage && { minMileage }),
+      ...(maxMileage && { maxMileage }),
     };
 
     dispatch(fetchFilteredCars(filters));
+    setIsFirstSearch(false);
+    setIsSearchCompleted(false);
+    setShowSuccess(false);
   };
+
+  useEffect(() => {
+    if (!isLoading && !isFirstSearch) {
+      if (filteredCars.length === 0) {
+        toast.error("No cars found");
+      } else {
+        setShowSuccess(true);
+      }
+      setIsSearchCompleted(true);
+    }
+  }, [filteredCars, isLoading, isFirstSearch]);
+
+  useEffect(() => {
+    if (isSearchCompleted && showSuccess && filteredCars.length > 0) {
+      toast.success("You found what you wanted, Bravo 🎉 🎉 🎉 ");
+    }
+  }, [isSearchCompleted, showSuccess, filteredCars]);
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
@@ -64,8 +104,8 @@ const CarFiltersMenu = () => {
 
       <MileageFilter />
 
-      <button className={s.button} type="submit">
-        Search
+      <button className={s.button} type="submit" disabled={isLoading}>
+        {isLoading ? "Searching..." : "Search"}
       </button>
     </form>
   );

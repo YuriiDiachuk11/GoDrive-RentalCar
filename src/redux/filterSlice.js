@@ -22,6 +22,7 @@ const filtersSlice = createSlice({
     maxMileage: "",
     isLoading: false,
     error: null,
+    cars: [],
   },
   reducers: {
     setBrand: (state, action) => {
@@ -41,7 +42,6 @@ const filtersSlice = createSlice({
       state.rentalPrice = "";
       state.minMileage = "";
       state.maxMileage = "";
-      state.resetTrigger = true;
     },
   },
   extraReducers: (builder) => {
