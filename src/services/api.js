@@ -57,13 +57,21 @@ export const getMoreCars = createAsyncThunk(
   "cars/getCarMore",
   async ({ page, limit, filters }, { rejectWithValue }) => {
     try {
-      const response = await axios.get("/cars", {
-        params: { page, limit, ...filters },
-      });
-
-      return { data: response.data.cars, totalPages: response.data.totalPages };
+      const res = await fetchCarsApi({ page, limit, filters });
+      return res;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.message);
     }
   }
 );
+
+export const fetchCarsApi = async ({ page, limit, filters }) => {
+  const response = await axios.get("/cars", {
+    params: { page, limit, ...filters },
+  });
+
+  return {
+    cars: response.data.cars,
+    totalPages: response.data.totalPages,
+  };
+};

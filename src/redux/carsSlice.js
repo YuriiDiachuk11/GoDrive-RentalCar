@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCars, getMoreCars } from "../services/api.js";
+import { fetchCarsApi, getMoreCars } from "../services/api.js";
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchCars",
-  async (_, { rejectWithValue }) => {
+  async ({ page, limit, filters }, { rejectWithValue }) => {
     try {
-      const cars = await getCars();
-      return cars;
+      const res = await fetchCarsApi({ page, limit, filters });
+      return res;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -19,10 +19,20 @@ const carsSlice = createSlice({
     cars: [],
     isLoading: false,
     error: null,
+    totalPages: null,
+    page: 1,
   },
   reducers: {
     setCars: (state, action) => {
       state.cars = action.payload;
+    },
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
+    resetCars: (state) => {
+      state.cars = [];
+      state.page = 1;
+      state.totalPages = null;
     },
   },
   extraReducers: (builder) => {
@@ -32,21 +42,18 @@ const carsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
+        const { cars, totalPages } = action.payload;
+
+        if (state.page === 1) {
+          state.cars = cars;
+        } else {
+          state.cars.push(...cars);
+        }
+
+        state.totalPages = totalPages;
         state.isLoading = false;
-        state.cars = action.payload;
       })
       .addCase(fetchCars.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(getMoreCars.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getMoreCars.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.cars = [...state.cars, ...action.payload.data];
-      })
-      .addCase(getMoreCars.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -54,3 +61,4 @@ const carsSlice = createSlice({
 });
 
 export default carsSlice.reducer;
+export const { setPage, resetCars } = carsSlice.actions;

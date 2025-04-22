@@ -9,3 +9,6 @@ export const selectMinMileage = (state) => state.filters.minMileage;
 export const selectMaxMileage = (state) => state.filters.maxMileage;
 export const selectFilteredCars = (state) => state.filters.cars;
 export const selectFavoriteCars = (state) => state.favorites.favoriteCars;
+
+export const selectPage = (state) => state.cars.page;
+export const selectTotalPages = (state) => state.cars.totalPages;
