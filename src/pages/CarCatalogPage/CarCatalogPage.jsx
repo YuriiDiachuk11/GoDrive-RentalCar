@@ -26,7 +26,7 @@ const CarCatalogPage = () => {
   const isFiltered = filteredCars.length > 0;
 
   useEffect(() => {
-    dispatch(fetchCars({ page, limit: 6 }));
+    dispatch(fetchCars({ page, limit: 10 }));
   }, [dispatch, page]);
 
   const shouldShowLoadMore = !isFiltered && page < totalPages;
