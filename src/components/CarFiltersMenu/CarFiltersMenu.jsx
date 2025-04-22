@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import s from "./CarFiltersMenu.module.css";
 import { getBrands } from "../../services/api.js";
 import ChooseBrand from "../ChooseBrand/ChooseBrand.jsx";
@@ -30,7 +30,7 @@ const CarFiltersMenu = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
-  const [isFirstSearch, setIsFirstSearch] = useState(true);
+  const hasSearched = useRef(false);
   const [isSearchCompleted, setIsSearchCompleted] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -68,27 +68,24 @@ const CarFiltersMenu = () => {
     };
 
     dispatch(fetchFilteredCars(filters));
-    setIsFirstSearch(false);
+    hasSearched.current = true;
     setIsSearchCompleted(false);
     setShowSuccess(false);
   };
 
   useEffect(() => {
-    if (!isLoading && !isFirstSearch) {
+    if (!isLoading && hasSearched.current) {
       if (filteredCars.length === 0) {
         toast.error("No cars found");
+        setShowSuccess(false);
       } else {
+        toast.success("You found what you wanted, Bravo 🎉 🎉 🎉");
         setShowSuccess(true);
       }
       setIsSearchCompleted(true);
+      hasSearched.current = false;
     }
-  }, [filteredCars, isLoading, isFirstSearch]);
-
-  useEffect(() => {
-    if (isSearchCompleted && showSuccess && filteredCars.length > 0) {
-      toast.success("You found what you wanted, Bravo 🎉 🎉 🎉 ");
-    }
-  }, [isSearchCompleted, showSuccess, filteredCars]);
+  }, [filteredCars, isLoading]);
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
