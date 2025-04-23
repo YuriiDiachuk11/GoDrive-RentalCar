@@ -47,6 +47,33 @@ const CarFiltersMenu = () => {
     dispatch(fetchCars());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (
+      !brand &&
+      !rentalPrice &&
+      (minMileage === "" || minMileage === undefined) &&
+      (maxMileage === "" || maxMileage === undefined)
+    ) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      const filters = {
+        ...(brand && { brand }),
+        ...(rentalPrice && { rentalPrice }),
+        ...(minMileage && { minMileage }),
+        ...(maxMileage && { maxMileage }),
+      };
+
+      dispatch(fetchFilteredCars(filters));
+      hasSearched.current = false;
+      setIsSearchCompleted(false);
+      setShowSuccess(false);
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, [brand, rentalPrice, minMileage, maxMileage, dispatch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -74,16 +101,18 @@ const CarFiltersMenu = () => {
   };
 
   useEffect(() => {
-    if (!isLoading && hasSearched.current) {
-      if (filteredCars.length === 0) {
-        toast.error("No cars found");
-        setShowSuccess(false);
-      } else {
-        toast.success("You found what you wanted, Bravo 🎉 🎉 🎉");
-        setShowSuccess(true);
+    if (!isLoading && isSearchCompleted === false) {
+      if (hasSearched.current) {
+        if (filteredCars.length === 0) {
+          toast.error("No cars found");
+          setShowSuccess(false);
+        } else {
+          toast.success("You found what you wanted, Bravo 🎉 🎉 🎉");
+          setShowSuccess(true);
+        }
+        setIsSearchCompleted(true);
+        hasSearched.current = false;
       }
-      setIsSearchCompleted(true);
-      hasSearched.current = false;
     }
   }, [filteredCars, isLoading]);
 
