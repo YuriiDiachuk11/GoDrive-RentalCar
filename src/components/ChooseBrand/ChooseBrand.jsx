@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import s from "./ChooseBrand.module.css";
 import { useDispatch } from "react-redux";
-import { setBrand } from "../../redux/filterSlice.js";
+import { setBrand, fetchFilteredCars } from "../../redux/filterSlice";
 
 const ChooseBrand = ({ brands }) => {
   const dispatch = useDispatch();
@@ -9,11 +9,18 @@ const ChooseBrand = ({ brands }) => {
   const [selected, setSelected] = useState("");
   const dropdownRef = useRef(null);
 
-  const wasOpenRef = useRef(false);
-
   const handleSelect = (brand) => {
     setSelected(brand);
     dispatch(setBrand(brand));
+    dispatch(fetchFilteredCars({ brand }));
+    setIsOpen(false);
+  };
+
+  const handleClear = (e) => {
+    e.stopPropagation();
+    setSelected("");
+    dispatch(setBrand(""));
+    dispatch(fetchFilteredCars({}));
     setIsOpen(false);
   };
 
@@ -28,19 +35,21 @@ const ChooseBrand = ({ brands }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    if (isOpen && !wasOpenRef.current && selected !== "") {
-      setSelected("");
-      dispatch(setBrand(""));
-    }
-
-    wasOpenRef.current = isOpen;
-  }, [isOpen]);
-
   return (
     <div className={s.container} ref={dropdownRef}>
       <div className={s.selectBox} onClick={() => setIsOpen(!isOpen)}>
         <span className={s.selectedText}>{selected || "Choose a brand"}</span>
+
+        {selected && (
+          <button
+            className={s.clearBtn}
+            onClick={handleClear}
+            aria-label="Clear brand"
+          >
+            ×
+          </button>
+        )}
+
         <svg
           className={`${s.svg} ${isOpen ? s.rotate : ""}`}
           width="16"
@@ -49,6 +58,7 @@ const ChooseBrand = ({ brands }) => {
           <use href="/assets/sprite.svg#icon-vector-upcopy"></use>
         </svg>
       </div>
+
       {isOpen && (
         <ul className={s.dropdown}>
           {brands.map((brand) => (

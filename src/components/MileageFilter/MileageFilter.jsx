@@ -11,7 +11,6 @@ const MileageFilter = () => {
 
   const handleChangeMin = (e) => {
     const value = e.target.value;
-
     if (value === "" || !isNaN(value.replace("From ", ""))) {
       setMinMileageState(value);
       dispatch(setMinMileage(value.replace("From ", "")));
@@ -40,6 +39,19 @@ const MileageFilter = () => {
     }
   };
 
+  const clearMin = () => {
+    setMinMileageState("From ");
+    dispatch(setMinMileage(""));
+  };
+
+  const clearMax = () => {
+    setMaxMileageState("To ");
+    dispatch(setMaxMileage(""));
+  };
+
+  const showClearMin = minMileage !== "From " && minMileage.trim() !== "";
+  const showClearMax = maxMileage !== "To " && maxMileage.trim() !== "";
+
   return (
     <div>
       <div className={s.mileageBox}>
@@ -47,27 +59,41 @@ const MileageFilter = () => {
           Car mileage / km
         </label>
         <div className={s.FromToBox}>
-          <input
-            onFocus={handleFocusMin}
-            onChange={handleChangeMin}
-            className={s.inputFrom}
-            type="text"
-            name="mileageFrom"
-            id="mileageFrom"
-            value={minMileage}
-            placeholder="From"
-          />
+          <div className={s.inputWrapper}>
+            <input
+              onFocus={handleFocusMin}
+              onChange={handleChangeMin}
+              className={s.inputFrom}
+              type="text"
+              name="mileageFrom"
+              id="mileageFrom"
+              value={minMileage}
+              placeholder="From"
+            />
+            {showClearMin && (
+              <button className={s.clearBtn} onClick={clearMin}>
+                ✕
+              </button>
+            )}
+          </div>
 
-          <input
-            onFocus={handleFocusMax}
-            onChange={handleChangeMax}
-            className={s.inputTo}
-            type="text"
-            name="mileageTo"
-            id="mileageTo"
-            value={maxMileage}
-            placeholder="To"
-          />
+          <div className={s.inputWrapper}>
+            <input
+              onFocus={handleFocusMax}
+              onChange={handleChangeMax}
+              className={s.inputTo}
+              type="text"
+              name="mileageTo"
+              id="mileageTo"
+              value={maxMileage}
+              placeholder="To"
+            />
+            {showClearMax && (
+              <button className={s.clearBtn} onClick={clearMax}>
+                ✕
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import s from "./ChooseRentalPrice.module.css";
 import { useDispatch } from "react-redux";
-import { setRentalPrice } from "../../redux/filterSlice.js";
+import { setRentalPrice, fetchFilteredCars } from "../../redux/filterSlice.js";
 
 const ChooseRentalPrice = () => {
   const prices = [30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
@@ -11,11 +11,18 @@ const ChooseRentalPrice = () => {
   const [selected, setSelected] = useState(null);
   const dropdownRef = useRef(null);
 
-  const wasOpenRef = useRef(false);
-
   const handleSelect = (price) => {
     setSelected(price);
     dispatch(setRentalPrice(price));
+    dispatch(fetchFilteredCars({ rentalPrice: price }));
+    setIsOpen(false);
+  };
+
+  const handleClear = (e) => {
+    e.stopPropagation();
+    setSelected(null);
+    dispatch(setRentalPrice(""));
+    dispatch(fetchFilteredCars({}));
     setIsOpen(false);
   };
 
@@ -30,15 +37,6 @@ const ChooseRentalPrice = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    if (isOpen && wasOpenRef.current === false && selected !== null) {
-      setSelected(null);
-      dispatch(setRentalPrice(""));
-    }
-
-    wasOpenRef.current = isOpen;
-  }, [isOpen]);
-
   const formatSelectedPrice = (price) => {
     if (price) {
       return `To $${price}`;
@@ -50,6 +48,17 @@ const ChooseRentalPrice = () => {
     <div className={s.container} ref={dropdownRef}>
       <div className={s.selectBox} onClick={() => setIsOpen(!isOpen)}>
         <span className={s.selectedText}>{formatSelectedPrice(selected)}</span>
+
+        {selected && (
+          <button
+            className={s.clearBtn}
+            onClick={handleClear}
+            aria-label="Clear price"
+          >
+            ×
+          </button>
+        )}
+
         <svg
           className={`${s.svg} ${isOpen ? s.rotate : ""}`}
           width="16"
