@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "../Layout/Layout.jsx";
 import Loader from "../Loader/Loader.jsx";
 import { ToastContainer } from "react-toastify";
+import CarFavoriteListPage from "../../pages/CarFavoriteListPage/CarFavoriteListPage.jsx";
 
 const HomePage = React.lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const CarCatalogPage = React.lazy(() =>
@@ -47,6 +48,14 @@ const App = () => {
             }
           />
         </Route>
+        <Route
+          path="/favorites"
+          element={
+            <Suspense fallback={<Loader />}>
+              <CarFavoriteListPage />
+            </Suspense>
+          }
+        />
       </Routes>
     </div>
   );
