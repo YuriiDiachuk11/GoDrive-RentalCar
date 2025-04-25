@@ -27,7 +27,7 @@ const Navigation = () => {
         </NavLink>
 
         <NavLink className={buildLinkClass} to="/favorites">
-          Favorites
+          <span className={s.favIcon}>❤️</span> Favorites
           {favoriteCount > 0 && (
             <span className={s.counter}>{favoriteCount}</span>
           )}

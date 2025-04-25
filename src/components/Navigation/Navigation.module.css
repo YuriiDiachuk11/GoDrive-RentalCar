@@ -18,11 +18,12 @@
   line-height: 125%;
   text-align: center;
 }
+
 .active {
   color: #0b44cd;
 }
 .counter {
-  background-color: #ff3b30;
+  background-color: #ff30c1;
   color: white;
   font-size: 14px;
   font-weight: 600;
