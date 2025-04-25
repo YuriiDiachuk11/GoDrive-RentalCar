@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { toast } from "react-toastify";
+import DatePicker from "react-datepicker";
 import "react-toastify/dist/ReactToastify.css";
-import DatePicker from "react-datepicker"; //
 import "react-datepicker/dist/react-datepicker.css";
 
 import s from "./RentForm.module.css";
 import { validate } from "../../services/validation.js";
 
 const RentForm = () => {
-  const [startDate, setStartDate] = useState(null);
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
 
   const handleSubmit = (values) => {
     console.log(values);
@@ -33,6 +34,7 @@ const RentForm = () => {
           Stay connected! We are always ready to help you.
         </p>
       </div>
+
       <Formik
         onSubmit={handleSubmit}
         initialValues={initialValues}
@@ -44,7 +46,7 @@ const RentForm = () => {
               className={s.input}
               name="username"
               type="text"
-              placeholder="Name"
+              placeholder="Name*"
             />
             {errors.username && touched.username && (
               <div className={s.error}>{errors.username}</div>
@@ -54,7 +56,7 @@ const RentForm = () => {
               className={s.input}
               name="email"
               type="text"
-              placeholder="Email"
+              placeholder="Email*"
             />
             {errors.email && touched.email && (
               <div className={s.error}>{errors.email}</div>
@@ -62,11 +64,14 @@ const RentForm = () => {
 
             <div className={s.datePickerWrapper}>
               <DatePicker
-                selected={startDate}
-                onChange={(date) => {
-                  setStartDate(date);
-                  setFieldValue("bookingDate", date);
+                selectsRange
+                startDate={startDate}
+                endDate={endDate}
+                onChange={(update) => {
+                  setDateRange(update);
+                  setFieldValue("bookingDate", update);
                 }}
+                minDate={new Date()}
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Booking date"
                 className={s.dateInput}
