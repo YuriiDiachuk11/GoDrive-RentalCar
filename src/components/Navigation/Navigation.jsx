@@ -1,13 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import s from "./Navigation.module.css";
+import { useSelector } from "react-redux";
 import clsx from "clsx";
+import s from "./Navigation.module.css";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.menuItem, isActive && s.active);
 };
 
 const Navigation = () => {
+  const favoriteCount = useSelector(
+    (state) => state.favorites.favoriteCars.length
+  );
+
   return (
     <nav className={s.navigation}>
       <NavLink to="/">
@@ -23,6 +28,9 @@ const Navigation = () => {
 
         <NavLink className={buildLinkClass} to="/favorites">
           Favorites
+          {favoriteCount > 0 && (
+            <span className={s.counter}>{favoriteCount}</span>
+          )}
         </NavLink>
       </div>
     </nav>
