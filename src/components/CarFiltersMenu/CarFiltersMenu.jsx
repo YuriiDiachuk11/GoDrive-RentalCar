@@ -131,7 +131,7 @@ const CarFiltersMenu = () => {
       <MileageFilter />
 
       <button className={s.button} type="submit" disabled={isLoading}>
-        {isLoading ? "Searching..." : "Search"}
+        {isLoading ? "Searching..." : "Search  🔍"}
       </button>
     </form>
   );

@@ -79,7 +79,7 @@ const CarItem = ({ car }) => {
         </div>
       </div>
       <button onClick={handleButtonClick} className={s.button} type="button">
-        Read more
+        Read more 📖
       </button>
     </div>
   );
