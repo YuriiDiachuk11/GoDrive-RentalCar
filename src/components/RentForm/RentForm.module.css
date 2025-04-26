@@ -73,19 +73,19 @@
 }
 
 .dateInput {
-  width: 100% !important; /* Займає всю ширину батьківського елемента */
+  width: 100% !important; 
   padding: 12px 20px;
   border-radius: 12px;
   background: var(--inputs);
   border: none;
-  height: 48px; /* Встановлюємо висоту, щоб вона відповідала іншим полям */
+  height: 48px; 
   font-size: 16px;
   color: var(--gray);
 }
 
 .dateInput:focus {
   outline: none;
-  border: 1px solid var(--main); /* Колір обводки при фокусі */
+  border: 1px solid var(--main); 
 }
 
 .dateInput::placeholder {

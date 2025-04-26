@@ -17,7 +17,7 @@ export const validationSchema = Joi.object({
   bookingDate: Joi.date().required().messages({
     "date.base": "Booking date is required",
   }),
-  comment: Joi.string().max(500).optional().messages({
+  comment: Joi.string().max(500).allow("").messages({
     "string.base": "Comment must be a string",
     "string.max": "Comment must not exceed 500 characters",
   }),
