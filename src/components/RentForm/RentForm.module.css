@@ -1,97 +1,78 @@
-.title {
+.container {
+  min-height: 488px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.form {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  margin-bottom: 0;
+}
+
+.form h3 {
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 20px;
   line-height: 120%;
   color: var(--main);
+  margin-bottom: 8px;
+  text-align: center;
 }
-.text {
+
+.form p {
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
   line-height: 125%;
-  color: var(--gray);
-}
-.textBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+  color: var(--color-grey);
   margin-bottom: 24px;
+  text-align: center;
 }
-.container {
-  min-height: 488px;
-}
-.form {
+
+.inputsWrap {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  align-items: center;
+  margin-bottom: 24px;
 }
-.input {
+
+.inputsWrap input {
   border-radius: 12px;
+  background: var(--inputs);
+  border: none;
+  height: 48px;
+  padding: 14px 20px;
+  width: 100%;
+}
+
+.inputsWrap textarea {
+  border-radius: 12px;
+  background: var(--inputs);
+  border: none;
+  height: 88px;
   padding: 12px 20px;
   width: 100%;
-  height: 48px;
-  background: var(--inputs);
-  border: none;
+  resize: none;
 }
-.textarea {
-  border-radius: 12px;
-  padding: 12px 20px 56px 20px;
-  width: 100%;
-  height: 88px;
-  background: var(--inputs);
-  border: none;
+
+.btnWrap {
+  display: flex;
+  justify-content: center;
 }
+
 .button {
   border-radius: 12px;
-  padding: 12px 51px;
-  width: 156px;
-  height: 44px;
+  padding: 12px 58px;
   background: var(--button);
+  color: var(--white);
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 16px;
   line-height: 125%;
-  color: var(--white);
-  /* text-align: center; */
   display: flex;
   align-items: center;
-  margin: 0 auto;
-}
-.input::placeholder {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--gray);
-}
-.datePickerWrapper {
-  width: 100% !important;
-}
-
-.dateInput {
-  width: 100% !important; 
-  padding: 12px 20px;
-  border-radius: 12px;
-  background: var(--inputs);
+  justify-content: center;
+  cursor: pointer;
   border: none;
-  height: 48px; 
-  font-size: 16px;
-  color: var(--gray);
-}
-
-.dateInput:focus {
-  outline: none;
-  border: 1px solid var(--main); 
-}
-
-.dateInput::placeholder {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--gray);
 }
