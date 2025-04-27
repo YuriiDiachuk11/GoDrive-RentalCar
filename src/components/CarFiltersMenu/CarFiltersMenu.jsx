@@ -28,11 +28,9 @@ const CarFiltersMenu = () => {
   const maxMileage = useSelector(selectMaxMileage);
   const filteredCars = useSelector(selectFilteredCars);
   const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
 
   const hasSearched = useRef(false);
   const [isSearchCompleted, setIsSearchCompleted] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const fetchBrands = async () => {
@@ -46,33 +44,6 @@ const CarFiltersMenu = () => {
     fetchBrands();
     dispatch(fetchCars());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (
-      !brand &&
-      !rentalPrice &&
-      (minMileage === "" || minMileage === undefined) &&
-      (maxMileage === "" || maxMileage === undefined)
-    ) {
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      const filters = {
-        ...(brand && { brand }),
-        ...(rentalPrice && { rentalPrice }),
-        ...(minMileage && { minMileage }),
-        ...(maxMileage && { maxMileage }),
-      };
-
-      dispatch(fetchFilteredCars(filters));
-      hasSearched.current = false;
-      setIsSearchCompleted(false);
-      setShowSuccess(false);
-    }, 600);
-
-    return () => clearTimeout(timer);
-  }, [brand, rentalPrice, minMileage, maxMileage, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -97,7 +68,6 @@ const CarFiltersMenu = () => {
     dispatch(fetchFilteredCars(filters));
     hasSearched.current = true;
     setIsSearchCompleted(false);
-    setShowSuccess(false);
   };
 
   useEffect(() => {
@@ -105,10 +75,8 @@ const CarFiltersMenu = () => {
       if (hasSearched.current) {
         if (filteredCars.length === 0) {
           toast.error("No cars found");
-          setShowSuccess(false);
         } else {
-          toast.success("You found what you wanted, Bravo 🎉 🎉 🎉");
-          setShowSuccess(true);
+          toast.success("Cars found 🎉");
         }
         setIsSearchCompleted(true);
         hasSearched.current = false;
@@ -131,7 +99,7 @@ const CarFiltersMenu = () => {
       <MileageFilter />
 
       <button className={s.button} type="submit" disabled={isLoading}>
-        {isLoading ? "Searching..." : "Search  🔍"}
+        {isLoading ? "Searching..." : "Search 🔍"}
       </button>
     </form>
   );

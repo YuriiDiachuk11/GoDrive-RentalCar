@@ -14,6 +14,7 @@ import CarFiltersMenu from "../../components/CarFiltersMenu/CarFiltersMenu.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import CarList from "../../components/CarList/CarList.jsx";
 import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn.jsx";
+import { resetFilters } from "../../redux/filterSlice.js";
 
 const CarCatalogPage = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const CarCatalogPage = () => {
   const isFiltered = filteredCars.length > 0;
 
   useEffect(() => {
+    dispatch(resetFilters());
     dispatch(fetchCars({ page, limit: 10 }));
   }, [dispatch, page]);
 
@@ -35,7 +37,7 @@ const CarCatalogPage = () => {
     <div>
       <Navigation />
       <CarFiltersMenu />
-      {isLoading ? <Loader /> : <CarList cars={cars} />}
+      {isLoading ? <Loader /> : <CarList />}
       {error && <p>Error: {error}</p>}
       {shouldShowLoadMore && <LoadMoreBtn />}
     </div>

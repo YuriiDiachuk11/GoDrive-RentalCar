@@ -42,6 +42,7 @@ const filtersSlice = createSlice({
       state.rentalPrice = "";
       state.minMileage = "";
       state.maxMileage = "";
+      state.cars = [];
     },
   },
   extraReducers: (builder) => {
