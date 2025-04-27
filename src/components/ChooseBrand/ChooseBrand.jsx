@@ -12,7 +12,6 @@ const ChooseBrand = ({ brands }) => {
   const handleSelect = (brand) => {
     setSelected(brand);
     dispatch(setBrand(brand));
-    dispatch(fetchFilteredCars({ brand }));
     setIsOpen(false);
   };
 

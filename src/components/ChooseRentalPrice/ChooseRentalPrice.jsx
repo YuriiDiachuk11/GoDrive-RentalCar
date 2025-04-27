@@ -14,7 +14,6 @@ const ChooseRentalPrice = () => {
   const handleSelect = (price) => {
     setSelected(price);
     dispatch(setRentalPrice(price));
-    dispatch(fetchFilteredCars({ rentalPrice: price }));
     setIsOpen(false);
   };
 
