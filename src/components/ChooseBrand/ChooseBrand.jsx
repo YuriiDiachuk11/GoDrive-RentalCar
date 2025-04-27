@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import s from "./ChooseBrand.module.css";
 import { useDispatch } from "react-redux";
-import { setBrand, fetchFilteredCars } from "../../redux/filterSlice";
+import { setBrand } from "../../redux/filterSlice";
 
 const ChooseBrand = ({ brands }) => {
   const dispatch = useDispatch();
@@ -19,7 +19,6 @@ const ChooseBrand = ({ brands }) => {
     e.stopPropagation();
     setSelected("");
     dispatch(setBrand(""));
-    dispatch(fetchFilteredCars({}));
     setIsOpen(false);
   };
 

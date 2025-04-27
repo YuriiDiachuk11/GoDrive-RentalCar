@@ -6,7 +6,6 @@ import {
   selectError,
   selectPage,
   selectTotalPages,
-  selectFilteredCars,
 } from "../../redux/selectors/selectors.js";
 import { fetchCars } from "../../redux/carsSlice.js";
 import Navigation from "../../components/Navigation/Navigation.jsx";
@@ -18,30 +17,37 @@ import { resetFilters } from "../../redux/filterSlice.js";
 
 const CarCatalogPage = () => {
   const dispatch = useDispatch();
+
   const cars = useSelector(selectCars);
-  const filteredCars = useSelector(selectFilteredCars);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const page = useSelector(selectPage);
   const totalPages = useSelector(selectTotalPages);
-  const hasSearched = useSelector((state) => state.filters.hasSearched);
-
-  const isFiltered = filteredCars.length > 0;
 
   useEffect(() => {
     dispatch(resetFilters());
     dispatch(fetchCars({ page, limit: 10 }));
   }, [dispatch, page]);
 
-  const shouldShowLoadMore = !isFiltered && !hasSearched && page < totalPages;
+  const shouldShowLoadMore = page < totalPages;
 
   return (
     <div>
       <Navigation />
       <CarFiltersMenu />
-      {isLoading ? <Loader /> : <CarList />}
+
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <CarList />
+          {cars.length === 0 && <p>No cars found for your request 😢</p>}
+        </>
+      )}
+
       {error && <p>Error: {error}</p>}
-      {shouldShowLoadMore && <LoadMoreBtn />}
+
+      {shouldShowLoadMore && !isLoading && <LoadMoreBtn />}
     </div>
   );
 };

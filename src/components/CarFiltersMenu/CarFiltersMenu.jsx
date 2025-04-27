@@ -11,10 +11,8 @@ import {
   selectMinMileage,
   selectRentalPrice,
   selectIsLoading,
-  selectError,
-  selectFilteredCars,
+  selectCars,
 } from "../../redux/selectors/selectors.js";
-import { fetchFilteredCars } from "../../redux/filterSlice.js";
 import { fetchCars } from "../../redux/carsSlice.js";
 import { toast } from "react-toastify";
 
@@ -26,7 +24,7 @@ const CarFiltersMenu = () => {
   const rentalPrice = useSelector(selectRentalPrice);
   const minMileage = useSelector(selectMinMileage);
   const maxMileage = useSelector(selectMaxMileage);
-  const filteredCars = useSelector(selectFilteredCars);
+  const cars = useSelector(selectCars);
   const isLoading = useSelector(selectIsLoading);
 
   const hasSearched = useRef(false);
@@ -42,7 +40,8 @@ const CarFiltersMenu = () => {
       }
     };
     fetchBrands();
-    dispatch(fetchCars());
+
+    dispatch(fetchCars({ page: 1, limit: 12 }));
   }, [dispatch]);
 
   const handleSubmit = (e) => {
@@ -65,7 +64,7 @@ const CarFiltersMenu = () => {
       ...(maxMileage && { maxMileage }),
     };
 
-    dispatch(fetchFilteredCars(filters));
+    dispatch(fetchCars({ page: 1, limit: 12, filters }));
     hasSearched.current = true;
     setIsSearchCompleted(false);
   };
@@ -73,16 +72,16 @@ const CarFiltersMenu = () => {
   useEffect(() => {
     if (!isLoading && isSearchCompleted === false) {
       if (hasSearched.current) {
-        if (filteredCars.length === 0) {
-          toast.error("No cars found");
+        if (cars.length === 0) {
+          toast.error("Sorry, nothing found");
         } else {
-          toast.success("Cars found 🎉");
+          toast.success("You got what you want 🎉");
         }
         setIsSearchCompleted(true);
         hasSearched.current = false;
       }
     }
-  }, [filteredCars, isLoading]);
+  }, [cars, isLoading]);
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>

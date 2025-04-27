@@ -1,12 +1,27 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchCarsApi, getMoreCars } from "../services/api.js";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://car-rental-api.goit.global";
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchCars",
-  async ({ page, limit, filters }, { rejectWithValue }) => {
+  async ({ page, limit }, { getState, rejectWithValue }) => {
     try {
-      const res = await fetchCarsApi({ page, limit, filters });
-      return res;
+      const { filters } = getState();
+      const { brand, rentalPrice, minMileage, maxMileage } = filters;
+
+      const params = { page, limit };
+      if (brand) params.brand = brand;
+      if (rentalPrice) params.rentalPrice = rentalPrice;
+      if (minMileage) params.minMileage = minMileage;
+      if (maxMileage) params.maxMileage = maxMileage;
+
+      const response = await axios.get("/cars", { params });
+
+      return {
+        cars: response.data.cars,
+        totalPages: response.data.totalPages,
+      };
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -23,9 +38,6 @@ const carsSlice = createSlice({
     page: 1,
   },
   reducers: {
-    setCars: (state, action) => {
-      state.cars = action.payload;
-    },
     setPage: (state, action) => {
       state.page = action.payload;
     },
@@ -60,5 +72,5 @@ const carsSlice = createSlice({
   },
 });
 
-export default carsSlice.reducer;
 export const { setPage, resetCars } = carsSlice.actions;
+export default carsSlice.reducer;

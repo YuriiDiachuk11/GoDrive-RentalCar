@@ -1,17 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getFilteredCars } from "../services/api";
-
-export const fetchFilteredCars = createAsyncThunk(
-  "filters/fetchFilteredCars",
-  async (filters, { rejectWithValue }) => {
-    try {
-      const cars = await getFilteredCars(filters);
-      return cars;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
 
 const filtersSlice = createSlice({
   name: "filters",
@@ -20,10 +7,6 @@ const filtersSlice = createSlice({
     rentalPrice: "",
     minMileage: "",
     maxMileage: "",
-    isLoading: false,
-    error: null,
-    cars: [],
-    hasSearched: false,
   },
   reducers: {
     setBrand: (state, action) => {
@@ -43,25 +26,7 @@ const filtersSlice = createSlice({
       state.rentalPrice = "";
       state.minMileage = "";
       state.maxMileage = "";
-      state.cars = [];
-      state.hasSearched = false;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchFilteredCars.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchFilteredCars.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.cars = action.payload;
-        state.hasSearched = true;
-      })
-      .addCase(fetchFilteredCars.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
   },
 });
 
