@@ -9,23 +9,30 @@ import {
 } from "../../redux/selectors/selectors.js";
 
 const CarList = () => {
-  const cars = useSelector((state) => {
-    const filteredCars = selectFilteredCars(state);
+  const cars = useSelector(selectCars);
+  const filteredCars = useSelector(selectFilteredCars);
+  const hasSearched = useSelector((state) => state.filters.hasSearched);
 
-    return Array.isArray(filteredCars) && filteredCars.length > 0
+  const displayedCars =
+    Array.isArray(filteredCars) && filteredCars.length > 0
       ? filteredCars
-      : selectCars(state);
-  });
+      : hasSearched
+      ? []
+      : cars;
 
   return (
     <div>
-      <ul className={s.list}>
-        {Array.isArray(cars) && cars.length > 0 ? (
-          cars.map((car) => <CarItem key={uuidv4()} car={car} />)
-        ) : (
-          <p>No cars found</p>
-        )}
-      </ul>
+      {hasSearched && displayedCars.length === 0 ? (
+        <div className={s.noResults}>
+          <p>🚫 Nothing found for your query</p>
+        </div>
+      ) : (
+        <ul className={s.list}>
+          {displayedCars.map((car) => (
+            <CarItem key={uuidv4()} car={car} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

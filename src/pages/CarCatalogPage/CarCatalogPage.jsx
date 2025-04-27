@@ -24,6 +24,8 @@ const CarCatalogPage = () => {
   const error = useSelector(selectError);
   const page = useSelector(selectPage);
   const totalPages = useSelector(selectTotalPages);
+  const hasSearched = useSelector((state) => state.filters.hasSearched);
+
   const isFiltered = filteredCars.length > 0;
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const CarCatalogPage = () => {
     dispatch(fetchCars({ page, limit: 10 }));
   }, [dispatch, page]);
 
-  const shouldShowLoadMore = !isFiltered && page < totalPages;
+  const shouldShowLoadMore = !isFiltered && !hasSearched && page < totalPages;
 
   return (
     <div>

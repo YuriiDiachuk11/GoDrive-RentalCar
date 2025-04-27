@@ -23,6 +23,7 @@ const filtersSlice = createSlice({
     isLoading: false,
     error: null,
     cars: [],
+    hasSearched: false,
   },
   reducers: {
     setBrand: (state, action) => {
@@ -54,6 +55,7 @@ const filtersSlice = createSlice({
       .addCase(fetchFilteredCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cars = action.payload;
+        state.hasSearched = true;
       })
       .addCase(fetchFilteredCars.rejected, (state, action) => {
         state.isLoading = false;
