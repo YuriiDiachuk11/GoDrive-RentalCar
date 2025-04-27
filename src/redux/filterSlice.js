@@ -44,6 +44,7 @@ const filtersSlice = createSlice({
       state.minMileage = "";
       state.maxMileage = "";
       state.cars = [];
+      state.hasSearched = false;
     },
   },
   extraReducers: (builder) => {
