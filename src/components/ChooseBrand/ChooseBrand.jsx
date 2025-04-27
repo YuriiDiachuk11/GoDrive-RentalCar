@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import s from "./ChooseBrand.module.css";
 import { useDispatch } from "react-redux";
 import { setBrand } from "../../redux/filterSlice";
+import { handleSearchWithCurrentFilters } from "../../utils/handleSearch.js";
 
 const ChooseBrand = ({ brands }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const ChooseBrand = ({ brands }) => {
     setSelected("");
     dispatch(setBrand(""));
     setIsOpen(false);
+    handleSearchWithCurrentFilters();
   };
 
   const handleClickOutside = (e) => {

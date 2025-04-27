@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import s from "./ChooseRentalPrice.module.css";
 import { useDispatch } from "react-redux";
 import { setRentalPrice } from "../../redux/filterSlice.js";
+import { handleSearchWithCurrentFilters } from "../../utils/handleSearch.js";
 
 const ChooseRentalPrice = () => {
   const prices = [30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
@@ -22,6 +23,7 @@ const ChooseRentalPrice = () => {
     setSelected(null);
     dispatch(setRentalPrice(""));
     setIsOpen(false);
+    handleSearchWithCurrentFilters();
   };
 
   const handleClickOutside = (e) => {

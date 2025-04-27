@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import s from "./MileageFilter.module.css";
 import { useDispatch } from "react-redux";
 import { setMaxMileage, setMinMileage } from "../../redux/filterSlice.js";
+import { handleSearchWithCurrentFilters } from "../../utils/handleSearch.js";
 
 const MileageFilter = () => {
   const dispatch = useDispatch();
@@ -42,11 +43,13 @@ const MileageFilter = () => {
   const clearMin = () => {
     setMinMileageState("From ");
     dispatch(setMinMileage(""));
+    handleSearchWithCurrentFilters();
   };
 
   const clearMax = () => {
     setMaxMileageState("To ");
     dispatch(setMaxMileage(""));
+    handleSearchWithCurrentFilters();
   };
 
   const showClearMin = minMileage !== "From " && minMileage.trim() !== "";
