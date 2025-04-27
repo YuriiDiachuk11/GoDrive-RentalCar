@@ -28,6 +28,8 @@ const CarFiltersMenu = () => {
   const isLoading = useSelector(selectIsLoading);
 
   const hasSearched = useRef(false);
+  const isFirstSearch = useRef(true);
+
   const [isSearchCompleted, setIsSearchCompleted] = useState(false);
 
   useEffect(() => {
@@ -47,12 +49,13 @@ const CarFiltersMenu = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (
+    const noFiltersSelected =
       !brand &&
       !rentalPrice &&
       (minMileage === "" || minMileage === undefined) &&
-      (maxMileage === "" || maxMileage === undefined)
-    ) {
+      (maxMileage === "" || maxMileage === undefined);
+
+    if (noFiltersSelected && isFirstSearch.current) {
       toast.error("Please select at least one filter.");
       return;
     }
@@ -67,6 +70,7 @@ const CarFiltersMenu = () => {
     dispatch(fetchCars({ page: 1, limit: 12, filters }));
     hasSearched.current = true;
     setIsSearchCompleted(false);
+    isFirstSearch.current = false;
   };
 
   useEffect(() => {

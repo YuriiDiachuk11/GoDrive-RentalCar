@@ -36,14 +36,7 @@ const CarCatalogPage = () => {
       <Navigation />
       <CarFiltersMenu />
 
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <CarList />
-          {cars.length === 0 && <p>No cars found for your request 😢</p>}
-        </>
-      )}
+      {isLoading ? <Loader /> : <CarList />}
 
       {error && <p>Error: {error}</p>}
 
