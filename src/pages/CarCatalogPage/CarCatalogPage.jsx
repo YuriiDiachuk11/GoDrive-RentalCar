@@ -26,6 +26,9 @@ const CarCatalogPage = () => {
 
   useEffect(() => {
     dispatch(resetFilters());
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(fetchCars({ page, limit: 10 }));
   }, [dispatch, page]);
 

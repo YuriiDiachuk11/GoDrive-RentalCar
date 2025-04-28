@@ -42,9 +42,7 @@ const CarFiltersMenu = () => {
       }
     };
     fetchBrands();
-
-    dispatch(fetchCars({ page: 1, limit: 12 }));
-  }, [dispatch]);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
