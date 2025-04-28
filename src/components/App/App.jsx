@@ -4,6 +4,7 @@ import Layout from "../Layout/Layout.jsx";
 import Loader from "../Loader/Loader.jsx";
 import { ToastContainer } from "react-toastify";
 import CarFavoriteListPage from "../../pages/CarFavoriteListPage/CarFavoriteListPage.jsx";
+import PageNotFound from "../../pages/NotFoundPage/NotFoundPage.jsx";
 
 const HomePage = React.lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const CarCatalogPage = React.lazy(() =>
@@ -56,6 +57,7 @@ const App = () => {
             </Suspense>
           }
         />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
