@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import s from "./ChooseRentalPrice.module.css";
 import { useDispatch } from "react-redux";
-import { setRentalPrice } from "../../redux/filterSlice.js";
+import { setRentalPrice } from "../../redux/slices/filterSlice.js";
 import { handleSearchWithCurrentFilters } from "../../utils/handleSearch.js";
 
 const ChooseRentalPrice = () => {

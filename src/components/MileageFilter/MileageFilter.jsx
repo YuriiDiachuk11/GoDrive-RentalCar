@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import s from "./MileageFilter.module.css";
 import { useDispatch } from "react-redux";
-import { setMaxMileage, setMinMileage } from "../../redux/filterSlice.js";
+import {
+  setMaxMileage,
+  setMinMileage,
+} from "../../redux/slices/filterSlice.js";
 import { handleSearchWithCurrentFilters } from "../../utils/handleSearch.js";
 
 const MileageFilter = () => {

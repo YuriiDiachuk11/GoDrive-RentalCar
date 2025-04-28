@@ -13,7 +13,7 @@ import {
   selectIsLoading,
   selectCars,
 } from "../../redux/selectors/selectors.js";
-import { fetchCars } from "../../redux/carsSlice.js";
+import { fetchCars } from "../../redux/slices/carsSlice.js";
 import { toast } from "react-toastify";
 
 const CarFiltersMenu = () => {

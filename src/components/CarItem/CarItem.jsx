@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addFavoriteCar,
   deleteFavoriteCar,
-} from "../../redux/favoriteSlice.js";
+} from "../../redux/slices/favoriteSlice.js";
 
 const CarItem = ({ car }) => {
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import {
   selectPage,
   selectTotalPages,
 } from "../../redux/selectors/selectors.js";
-import { setPage } from "../../redux/carsSlice.js";
+import { setPage } from "../../redux/slices/carsSlice.js";
 import s from "./LoadMoreBtn.module.css";
 
 const LoadMoreBtn = () => {
