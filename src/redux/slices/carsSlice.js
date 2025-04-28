@@ -1,27 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-
-axios.defaults.baseURL = "https://car-rental-api.goit.global";
+import { fetchCarsApi } from "../../services/api.js";
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchCars",
   async ({ page, limit }, { getState, rejectWithValue }) => {
     try {
       const { filters } = getState();
-      const { brand, rentalPrice, minMileage, maxMileage } = filters;
-
-      const params = { page, limit };
-      if (brand) params.brand = brand;
-      if (rentalPrice) params.rentalPrice = rentalPrice;
-      if (minMileage) params.minMileage = minMileage;
-      if (maxMileage) params.maxMileage = maxMileage;
-
-      const response = await axios.get("/cars", { params });
-
-      return {
-        cars: response.data.cars,
-        totalPages: response.data.totalPages,
-      };
+      const response = await fetchCarsApi({ page, limit, filters });
+      return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -55,13 +41,11 @@ const carsSlice = createSlice({
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         const { cars, totalPages } = action.payload;
-
         if (state.page === 1) {
           state.cars = cars;
         } else {
           state.cars.push(...cars);
         }
-
         state.totalPages = totalPages;
         state.isLoading = false;
       })
