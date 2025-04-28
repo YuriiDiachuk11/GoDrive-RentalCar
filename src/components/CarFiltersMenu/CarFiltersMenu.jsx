@@ -13,8 +13,8 @@ import {
   selectIsLoading,
   selectCars,
 } from "../../redux/selectors/selectors.js";
-import { fetchCars } from "../../redux/slices/carsSlice.js";
 import { toast } from "react-toastify";
+import { fetchCars } from "../../redux/operations/carsOperations.js";
 
 const CarFiltersMenu = () => {
   const [brands, setBrands] = useState([]);

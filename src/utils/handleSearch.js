@@ -1,4 +1,4 @@
-import { fetchCars } from "../redux/slices/carsSlice.js";
+import { fetchCars } from "../redux/operations/carsOperations.js";
 import store from "../redux/store.js";
 
 export const handleSearchWithCurrentFilters = () => {

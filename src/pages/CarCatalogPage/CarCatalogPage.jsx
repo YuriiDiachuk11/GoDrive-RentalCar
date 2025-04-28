@@ -7,13 +7,13 @@ import {
   selectPage,
   selectTotalPages,
 } from "../../redux/selectors/selectors.js";
-import { fetchCars } from "../../redux/slices/carsSlice.js";
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import CarFiltersMenu from "../../components/CarFiltersMenu/CarFiltersMenu.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import CarList from "../../components/CarList/CarList.jsx";
 import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn.jsx";
 import { resetFilters } from "../../redux/slices/filterSlice.js";
+import { fetchCars } from "../../redux/operations/carsOperations.js";
 
 const CarCatalogPage = () => {
   const dispatch = useDispatch();
