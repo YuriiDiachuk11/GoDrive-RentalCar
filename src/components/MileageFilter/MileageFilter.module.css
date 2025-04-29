@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 8px;
 }
+
 .label {
   font-family: var(--font-family);
   font-weight: 400;
@@ -10,46 +11,36 @@
   line-height: 133%;
   color: var(--gray);
 }
-.inputFrom {
+
+.inputFrom,
+.inputTo {
   border: none;
+  height: 40px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 125%;
+  color: var(--main);
+  padding-left: 16px;
+  background: var(--inputs);
+  width: 100%;
+  text-align: left;
+}
+
+.inputFrom {
   border-right: 1px solid var(--gray-light);
   border-radius: 12px 0 0 12px;
-  width: 160px;
-  height: 44px;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--main);
-  text-align: left;
-  padding-left: 24px;
-  background: var(--inputs);
 }
+
 .inputTo {
   border-radius: 0 12px 12px 0;
-  width: 160px;
-  height: 44px;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--main);
-  padding-left: 24px;
-  text-align: left;
-  border: none;
-  background: var(--inputs);
 }
-.inputFrom::placeholder {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--main);
-}
+
+.inputFrom::placeholder,
 .inputTo::placeholder {
   font-family: var(--font-family);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 125%;
   color: var(--main);
 }
@@ -57,10 +48,12 @@
 .FromToBox {
   display: flex;
   gap: 0;
+  flex-wrap: wrap;
 }
 
 .inputWrapper {
   position: relative;
+  flex: 1 1 140px;
 }
 
 .clearBtn {
@@ -75,4 +68,40 @@
   color: var(--gray);
   padding: 0;
   z-index: 2;
+}
+
+@media (min-width: 375px) {
+  .inputFrom,
+  .inputTo {
+    height: 44px;
+    font-size: 16px;
+    padding-left: 20px;
+  }
+
+  .inputFrom::placeholder,
+  .inputTo::placeholder {
+    font-size: 16px;
+  }
+
+  .inputWrapper {
+    flex: 1 1 160px;
+  }
+}
+
+@media (min-width: 768px) {
+  .inputWrapper {
+    flex: 0 0 auto;
+  }
+
+  .inputFrom,
+  .inputTo {
+    width: 160px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .inputFrom,
+  .inputTo {
+    width: 160px;
+  }
 }
