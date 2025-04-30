@@ -1,51 +1,38 @@
 .container {
-  padding: 104px 120px;
+  padding: 80px 20px;
   display: flex;
-  gap: 72px;
+  flex-direction: column;
+  gap: 40px;
   align-items: stretch;
 }
 
 .leftBox,
 .rightBox {
-  min-height: 488px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
 }
 
-.leftBox {
-  width: 640px;
-}
-
+.leftBox,
 .rightBox {
-  width: 488px;
-}
-
-.RentFormBox,
-.FavouriteCarBox,
-.carInfoBox,
-.rentInfoBox,
-.CarSpecificationsBox,
-.AccessoriesBox {
   width: 100%;
-  margin: 0 auto;
 }
 
 .RentFormBox {
   border: 1px solid var(--gray-light);
   border-radius: 10px;
-  padding: 32px;
-  height: 488px;
-  margin-top: 40px;
+  padding: 24px;
+  margin-top: 24px;
 }
 
 .additionalBox {
   display: flex;
   flex-direction: column;
-  gap: 110px;
+  gap: 48px;
 }
 
 .carInfoBox {
-  margin-bottom: 73px;
+  margin-bottom: 32px;
 }
 
 input,
@@ -72,4 +59,59 @@ textarea::placeholder {
   font-size: 16px;
   line-height: 125%;
   color: var(--gray);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 80px 32px;
+    flex-direction: row;
+    gap: 48px;
+  }
+
+  .leftBox,
+  .rightBox {
+    width: 50%;
+  }
+
+  .RentFormBox {
+    margin-top: 32px;
+    padding: 28px;
+  }
+
+  .additionalBox {
+    gap: 72px;
+  }
+
+  .carInfoBox {
+    margin-bottom: 48px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    padding: 104px 120px;
+    gap: 72px;
+  }
+
+  .leftBox {
+    width: 640px;
+  }
+
+  .rightBox {
+    width: 488px;
+  }
+
+  .RentFormBox {
+    padding: 32px;
+    margin-top: 40px;
+    height: 488px;
+  }
+
+  .additionalBox {
+    gap: 110px;
+  }
+
+  .carInfoBox {
+    margin-bottom: 73px;
+  }
 }
