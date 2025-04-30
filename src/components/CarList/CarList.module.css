@@ -3,6 +3,22 @@
   flex-wrap: wrap;
   gap: 32px;
   justify-content: center;
-  padding-left: 120px;
-  padding-right: 120px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 768px) {
+  .list {
+    justify-content: flex-start;
+    gap: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .list {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
 }
