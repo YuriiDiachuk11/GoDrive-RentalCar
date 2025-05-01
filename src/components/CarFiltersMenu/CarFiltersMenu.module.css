@@ -7,6 +7,7 @@
 
 .carBrandBox,
 .carPriceBox {
+  max-width: 196px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -52,11 +53,14 @@
     margin-top: 0;
     align-self: flex-end;
   }
+  .carBrandBox,
+  .carPriceBox {
+    flex: 1 1 180px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .form {
-    flex-wrap: nowrap;
     justify-content: center;
     padding: 84px 258px;
     gap: 16px;

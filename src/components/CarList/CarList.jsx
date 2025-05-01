@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import CarItem from "../CarItem/CarItem.jsx";
 import s from "./CarList.module.css";
 import { useSelector } from "react-redux";
@@ -9,11 +8,17 @@ const CarList = () => {
   const cars = useSelector(selectCars);
 
   return (
-    <ul className={s.list}>
-      {cars.map((car) => (
-        <CarItem key={uuidv4()} car={car} />
-      ))}
-    </ul>
+    <div>
+      {cars.length > 0 ? (
+        <ul className={s.list}>
+          {cars.map((car) => (
+            <CarItem key={car.id} car={car} />
+          ))}
+        </ul>
+      ) : (
+        <p className={s.empty}>No cars found 🙅‍♂️</p>
+      )}
+    </div>
   );
 };
 

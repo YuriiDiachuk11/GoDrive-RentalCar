@@ -6,10 +6,15 @@
   padding-left: 16px;
   padding-right: 16px;
 }
+.empty {
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (min-width: 768px) {
   .list {
-    justify-content: flex-start;
     gap: 24px;
     padding-left: 32px;
     padding-right: 32px;
